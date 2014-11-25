@@ -1,0 +1,67 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="PingdomAlert.WP8.SettingsView"
+    Style="{StaticResource DefaultPage}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:PingdomAlertShared.Navigation;assembly=PingdomAlertShared"
+    xmlns:custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Settings}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    navigation:Navigator.Source="{Binding}" >
+
+    <custom:Interaction.Triggers>
+        <custom:EventTrigger>
+            <custom:InvokeCommandAction Command="{Binding LoadCommand, Mode=OneWay}"/>
+        </custom:EventTrigger>
+    </custom:Interaction.Triggers>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{Binding BackgroundImageBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="PINGDOM ALERT" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Your account" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="{StaticResource PhoneBackgroundBrush}" Height="630" Padding="0" Margin="0">
+                <StackPanel Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="500">
+                    <TextBlock Style="{StaticResource PhoneTextTitle1Style}" Text="Add your Pingdom account" FontSize="36"  FontFamily="Segoe UI" FontWeight="Normal" Foreground="#f5a100"/>
+                    <Image Source="Assets/Account.png" Width="60" Height="60" RenderTransformOrigin="0.525,0.463" Margin="12,10,0,0" HorizontalAlignment="Left" />
+                    <TextBlock Style="{StaticResource PhoneTextTitle3Style}" Text="Your pingdom user name:" Foreground="#DEFFFFFF" Margin="12,5,12,0" />
+                    <TextBox x:Name="PingdomUsername"  Width="300" Margin="4" HorizontalAlignment="Left" Text ="{Binding UserName, Mode=TwoWay}" />
+                    <TextBlock Style="{StaticResource PhoneTextTitle3Style}" Text="Your pingdom password:" />
+                    <PasswordBox x:Name="PingdomPassword"  Margin="4" Width="300" HorizontalAlignment="Left" Password="{Binding Password, Mode=TwoWay}"/>
+                    <HyperlinkButton Command="{Binding NavigateCommand}" Foreground="#FF39373E">Sign up for a Pingdom account.</HyperlinkButton>
+                    <ProgressBar IsIndeterminate="true" x:Name="CustomIndeterminateProgressBar" Visibility="{Binding ShowProgress, Converter={StaticResource VisibilityConverter}}"/>
+                    <TextBlock x:Name="TestResult" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding TestResults, Mode=TwoWay}" Margin="12,5,12,0" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                        <Button x:Name="SaveButton" Content="Save" Margin="0,0,24,0" Command="{Binding SaveCommand}" Width="140" />
+                        <Button x:Name="TestButton" Content="Test" Margin="0" Command="{Binding TestCommand}" Width="140"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>
