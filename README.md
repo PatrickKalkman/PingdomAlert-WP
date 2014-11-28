@@ -1,5 +1,6 @@
 PingdomAlert-WP
 ===============
+[![Build status](https://ci.appveyor.com/api/projects/status/3jfaah5f933tocn8/branch/master?svg=true)](https://ci.appveyor.com/project/kalkie/pingdomalert-wp)
 
 ![Logo](http://cdn.marketplaceimages.windowsphone.com/v8/images/9d1af086-1735-4a09-9c75-98b3f5cd0fcf?imageType=ws_icon_large)
 
